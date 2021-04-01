@@ -1,68 +1,55 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">restaurant-client</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <Header />
+    <RecentAdditions :menu="getMenu" />
+    <Categories :categories="getCategories" />
   </div>
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  head() {
+    return {
+      title: 'Главная | Мой ресторан',
+    }
+  },
+  computed: {
+    ...mapGetters(['getMenu', 'getCategories']),
+  },
+}
 </script>
 
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style lang="scss">
+body {
+  @apply bg-gray-800;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+button {
+  @apply transition duration-200 ease-in-out flex items-center;
+
+  &.default {
+    @apply bg-green-800 text-green-400 px-6 py-3 rounded-2xl;
+
+    width: max-content;
+  }
+
+  &:hover {
+    @apply transform scale-110;
+  }
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+// Текстовые стили
+h1 {
+  @apply text-white text-3xl font-bold;
 }
 
-.links {
-  padding-top: 15px;
+h2 {
+  @apply text-white text-2xl font-bold;
+}
+
+h3 {
+  @apply text-white text-xl font-bold;
 }
 </style>

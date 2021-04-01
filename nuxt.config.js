@@ -7,9 +7,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'restaurant-client',
+    title: 'Мой ресторан',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ru',
     },
     meta: [
       { charset: 'utf-8' },
@@ -40,6 +40,18 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    [
+      'vue-currency-filter/nuxt',
+      {
+        symbol: '₽',
+        thousandsSeparator: ' ',
+        fractionCount: 0,
+        fractionSeparator: '.',
+        symbolPosition: 'back',
+        symbolSpacing: true,
+        avoidEmptyDecimals: undefined,
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
