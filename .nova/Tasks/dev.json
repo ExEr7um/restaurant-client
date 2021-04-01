@@ -1,0 +1,13 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nnpm run generate"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\nnpm run dev"
+    }
+  },
+  "identifier" : "7EEAB200-B632-45F6-A264-8C6970934151"
+}
