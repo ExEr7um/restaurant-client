@@ -1,7 +1,6 @@
 <template>
-  <div class="container">
-    <Header />
-    <RecentAdditions :menu="getMenu" />
+  <div>
+    <RecentAdditions :menu="getMenu.slice(4)" />
     <Categories :categories="getCategories" />
   </div>
 </template>
@@ -51,5 +50,9 @@ h2 {
 
 h3 {
   @apply text-white text-xl font-bold;
+}
+
+h4 {
+  @apply text-white text-lg font-bold;
 }
 </style>

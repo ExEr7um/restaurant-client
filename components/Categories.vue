@@ -1,15 +1,16 @@
 <template>
   <div class="categories">
     <h1>Категории</h1>
-    <div
+    <nuxt-link
       class="categories-list grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+      to="/menu"
     >
       <CategoryCard
         v-for="category in categories"
-        :key="category"
+        :key="category.id"
         :category="category"
       />
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -27,5 +28,9 @@ export default {
 <style lang="scss" scoped>
 .categories {
   @apply mt-12;
+
+  h1 {
+    @apply mb-4;
+  }
 }
 </style>
