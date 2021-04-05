@@ -55,4 +55,8 @@ h3 {
 h4 {
   @apply text-white text-lg font-bold;
 }
+
+h5 {
+  @apply text-white font-bold text-gray-400;
+}
 </style>

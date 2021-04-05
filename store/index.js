@@ -147,6 +147,10 @@ export const state = () => ({
       image: require('@/assets/icn_pizza.svg'),
     },
   ],
+  yourBooking: {
+    date: new Date('2021-12-17T03:24:00'),
+    persons: '2',
+  },
 })
 
 export const mutations = {
@@ -161,5 +165,8 @@ export const getters = {
   },
   getCategories: (state) => {
     return state.categories
+  },
+  getYourBooking: (state) => {
+    return state.yourBooking
   },
 }

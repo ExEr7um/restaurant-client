@@ -9,8 +9,14 @@
         Меню
         <div class="indicator"></div>
       </nuxt-link>
+      <nuxt-link to="/booking">
+        Бронирование
+        <div class="indicator"></div>
+      </nuxt-link>
     </nav>
-    <button class="default">Забронировать столик</button>
+    <nuxt-link to="/booking">
+      <button class="default">Забронировать столик</button>
+    </nuxt-link>
   </header>
 </template>
 
