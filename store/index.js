@@ -147,15 +147,22 @@ export const state = () => ({
       image: require('@/assets/icn_pizza.svg'),
     },
   ],
-  yourBooking: {
-    date: new Date('2021-12-17T03:24:00'),
-    persons: '2',
-  },
+  yourBooking: null,
 })
 
 export const mutations = {
   addMenuItem(state, item) {
     state.menu.push(item)
+  },
+  createBooking(state, bookingInfo) {
+    state.yourBooking = {
+      name: bookingInfo.name,
+      date: bookingInfo.selectedTime,
+      persons: bookingInfo.persons,
+    }
+  },
+  cancelBooking(state) {
+    state.yourBooking = null
   },
 }
 

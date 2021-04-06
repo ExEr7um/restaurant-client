@@ -25,6 +25,7 @@ body {
   @apply bg-gray-800;
 }
 
+// СТИЛИ БЛОКОВ
 button {
   @apply transition duration-200 ease-in-out flex items-center;
 
@@ -34,12 +35,24 @@ button {
     width: max-content;
   }
 
+  &.destructive {
+    @apply bg-gray-600 text-red-400 px-6 py-3 rounded-2xl;
+  }
+
   &:hover {
     @apply transform scale-110;
   }
 }
 
-// Текстовые стили
+input {
+  @apply bg-gray-600 text-white px-4 py-2 rounded-lg outline-none border transition duration-200 ease-in-out border-green-500 border-opacity-0;
+
+  &:focus {
+    @apply border-opacity-100;
+  }
+}
+
+// ТЕКСТОВЫЕ СТИЛИ
 h1 {
   @apply text-white text-3xl font-bold;
 }

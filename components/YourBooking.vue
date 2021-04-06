@@ -5,13 +5,18 @@
       <img src="~assets/icn_clock.svg" alt="" />
       <h2>
         {{
-          `${yourBooking.date.toLocaleDateString()} в ${yourBooking.date.toLocaleTimeString(
-            'ru-RU',
-            { hour: '2-digit', minute: '2-digit' }
-          )}`
+          `${new Date(yourBooking.date).toLocaleDateString()} в ${new Date(
+            yourBooking.date
+          ).toLocaleTimeString('ru-RU', {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}`
         }}
       </h2>
       <h5>Количество гостей: {{ yourBooking.persons }}</h5>
+      <button class="destructive" @click="$store.commit('cancelBooking')">
+        Отменить бронирование
+      </button>
     </div>
   </div>
 </template>
@@ -28,15 +33,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.your-booking .your-booking-container {
-  @apply bg-gray-700 w-full flex flex-col items-center p-12 rounded-2xl mt-4;
+.your-booking {
+  @apply mb-8;
 
-  img {
-    @apply w-32 mb-4;
-  }
+  .your-booking-container {
+    @apply bg-gray-700 w-full flex flex-col items-center p-12 rounded-2xl mt-4;
 
-  h2 {
-    @apply mb-2;
+    img {
+      @apply w-32 mb-4;
+    }
+
+    h5 {
+      @apply mt-2 mb-4;
+    }
   }
 }
 </style>

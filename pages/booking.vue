@@ -1,6 +1,7 @@
 <template>
   <div class="booking">
-    <YourBooking :your-booking="getYourBooking" />
+    <YourBooking v-if="getYourBooking != null" :your-booking="getYourBooking" />
+    <BookSeat v-else />
   </div>
 </template>
 
