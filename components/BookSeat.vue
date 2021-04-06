@@ -8,40 +8,46 @@
       </div>
       <div class="time-select">
         <h2>Выберите время</h2>
-        <h3>🌅 Утро</h3>
-        <div class="time-container">
-          <div
-            v-for="time in timeList.morning"
-            :key="time"
-            class="time"
-            :class="{ selected: time == bookingInfo.selectedTime }"
-            @click="bookingInfo.selectedTime = time"
-          >
-            {{ time }}
+        <div v-if="timeList.morning.length > 0" class="morning">
+          <h3>🌅 Утро</h3>
+          <div class="time-container">
+            <div
+              v-for="time in timeList.morning"
+              :key="time"
+              class="time"
+              :class="{ selected: time == bookingInfo.selectedTime }"
+              @click="bookingInfo.selectedTime = time"
+            >
+              {{ time }}
+            </div>
           </div>
         </div>
-        <h3>🏞 День</h3>
-        <div class="time-container">
-          <div
-            v-for="time in timeList.day"
-            :key="time"
-            class="time"
-            :class="{ selected: time == bookingInfo.selectedTime }"
-            @click="bookingInfo.selectedTime = time"
-          >
-            {{ time }}
+        <div v-if="timeList.day.length > 0" class="day">
+          <h3>🏞 День</h3>
+          <div class="time-container">
+            <div
+              v-for="time in timeList.day"
+              :key="time"
+              class="time"
+              :class="{ selected: time == bookingInfo.selectedTime }"
+              @click="bookingInfo.selectedTime = time"
+            >
+              {{ time }}
+            </div>
           </div>
         </div>
-        <h3>🌃 Вечер</h3>
-        <div class="time-container">
-          <div
-            v-for="time in timeList.evening"
-            :key="time"
-            class="time"
-            :class="{ selected: time == bookingInfo.selectedTime }"
-            @click="bookingInfo.selectedTime = time"
-          >
-            {{ time }}
+        <div v-if="timeList.evening.length > 0" class="evening">
+          <h3>🌃 Вечер</h3>
+          <div class="time-container">
+            <div
+              v-for="time in timeList.evening"
+              :key="time"
+              class="time"
+              :class="{ selected: time == bookingInfo.selectedTime }"
+              @click="bookingInfo.selectedTime = time"
+            >
+              {{ time }}
+            </div>
           </div>
         </div>
       </div>
@@ -72,43 +78,63 @@
 export default {
   data() {
     return {
-      timeList: {
-        morning: ['9:00', '9:30', '10:00', '10:30', '11:00', '11:30'],
-        day: [
-          '12:00',
-          '12:30',
-          '13:00',
-          '13:30',
-          '14:00',
-          '14:30',
-          '15:00',
-          '15:30',
-          '16:00',
-          '16:30',
-          '17:00',
-          '17:30',
-          '18:00',
-          '18:30',
-          '19:00',
-          '19:30',
-        ],
-        evening: [
-          '20:00',
-          '20:30',
-          '21:00',
-          '21:30',
-          '22:00',
-          '22:30',
-          '23:00',
-          '23:30',
-        ],
-      },
       bookingInfo: {
         name: '',
         selectedTime: '',
         persons: '',
       },
     }
+  },
+  computed: {
+    timeList: () => {
+      let morning = ['9:00', '9:30', '10:00', '10:30', '11:00', '11:30']
+      for (const time of morning) {
+        if (new Date().getHours() >= time.split(':')[0]) {
+          morning = morning.filter((value) => value !== time)
+        }
+      }
+      let day = [
+        '12:00',
+        '12:30',
+        '13:00',
+        '13:30',
+        '14:00',
+        '14:30',
+        '15:00',
+        '15:30',
+        '16:00',
+        '16:30',
+        '17:00',
+        '17:30',
+        '18:00',
+        '18:30',
+        '19:00',
+        '19:30',
+      ]
+      for (const time of day) {
+        if (new Date().getHours() >= time.split(':')[0]) {
+          day = day.filter((value) => value !== time)
+        }
+      }
+      let evening = [
+        '20:00',
+        '20:30',
+        '21:00',
+        '21:30',
+        '22:00',
+        '22:30',
+        '23:00',
+        '23:30',
+      ]
+      for (const time of evening) {
+        if (new Date().getHours() >= time.split(':')[0]) {
+          evening = evening.filter((value) => value !== time)
+        }
+      }
+      const list = { morning, day, evening }
+
+      return list
+    },
   },
   methods: {
     checkPersons() {
