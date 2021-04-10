@@ -1,7 +1,7 @@
 <template>
   <div class="your-booking">
     <h1>Ваше бронирование</h1>
-    <div class="your-booking-container">
+    <div class="your-booking-container background-container">
       <img src="~assets/icn_clock.svg" alt="" />
       <h2>
         {{
@@ -14,7 +14,10 @@
         }}
       </h2>
       <h5>Количество гостей: {{ yourBooking.persons }}</h5>
-      <button class="destructive" @click="$store.commit('cancelBooking')">
+      <button
+        class="destructive"
+        @click="$store.commit('CANCEL_BOOKING', yourBooking.id)"
+      >
         Отменить бронирование
       </button>
     </div>
@@ -25,7 +28,7 @@
 export default {
   props: {
     yourBooking: {
-      type: Object,
+      type: String,
       default: null,
     },
   },
@@ -37,7 +40,7 @@ export default {
   @apply mb-8;
 
   .your-booking-container {
-    @apply bg-gray-700 w-full flex flex-col items-center p-12 rounded-2xl mt-4;
+    @apply items-center mt-4;
 
     img {
       @apply w-32 mb-4;

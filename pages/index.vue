@@ -1,12 +1,12 @@
 <template>
   <div>
-    <RecentAdditions :menu="getMenu.slice(4)" />
-    <Categories :categories="getCategories" />
+    <RecentAdditions :menu="menu.slice(4)" />
+    <Categories :categories="categories" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   head() {
@@ -15,7 +15,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getMenu', 'getCategories']),
+    ...mapState(['menu', 'categories']),
   },
 }
 </script>
@@ -27,7 +27,7 @@ body {
 
 // СТИЛИ БЛОКОВ
 button {
-  @apply transition duration-200 ease-in-out flex items-center;
+  @apply transition duration-200 ease-in-out flex items-center justify-center;
 
   &.default {
     @apply bg-green-800 text-green-400 px-6 py-3 rounded-2xl;
@@ -37,6 +37,10 @@ button {
 
   &.destructive {
     @apply bg-gray-600 text-red-400 px-6 py-3 rounded-2xl;
+  }
+
+  &.squared {
+    @apply w-8 h-8 rounded-xl;
   }
 
   &:hover {
@@ -49,6 +53,25 @@ input {
 
   &:focus {
     @apply border-opacity-100;
+  }
+}
+
+.background-container {
+  @apply bg-gray-700 w-full flex flex-col p-12 rounded-2xl;
+}
+
+table {
+  th,
+  td {
+    @apply border border-gray-600 py-2 px-4 text-white;
+  }
+
+  .actions .buttons {
+    @apply flex justify-between w-full;
+
+    button.squared {
+      @apply bg-gray-600 text-red-400;
+    }
   }
 }
 

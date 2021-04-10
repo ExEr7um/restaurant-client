@@ -3,7 +3,7 @@
     <h1>Меню</h1>
     <nav>
       <a
-        v-for="category in getCategories"
+        v-for="category in categories"
         :key="category.id"
         v-scroll-to="`#${category.id}`"
         href="#"
@@ -12,16 +12,16 @@
       </a>
     </nav>
     <CategoryItems
-      v-for="category in getCategories"
+      v-for="category in categories"
       :key="category.id"
-      :items="getMenu.filter((item) => item.category == category.title)"
+      :items="menu.filter((item) => item.category == category.title)"
       :category="category"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   head() {
@@ -30,7 +30,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getMenu', 'getCategories']),
+    ...mapState(['menu', 'categories']),
   },
 }
 </script>

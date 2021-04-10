@@ -26,6 +26,7 @@
     "vue-currency-filter": "^5.2.0",
     "vue-datetime": "*",
     "vue-scrollto": "^2.20.0",
+    "vue-uuid": "^2.0.2",
     "vuex-persist": "^3.1.3"
   },
   "devDependencies": {

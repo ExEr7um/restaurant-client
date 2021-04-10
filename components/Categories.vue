@@ -18,7 +18,7 @@
 export default {
   props: {
     categories: {
-      type: String,
+      type: Array,
       default: null,
     },
   },

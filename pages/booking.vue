@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   head() {
@@ -15,7 +15,13 @@ export default {
     }
   },
   computed: {
+    ...mapState(['bookings']),
     ...mapGetters(['getYourBooking']),
+  },
+  mounted() {
+    if (this.getYourBooking === null) {
+      this.$store.commit('REMOVE_YOUR_BOOKING')
+    }
   },
 }
 </script>

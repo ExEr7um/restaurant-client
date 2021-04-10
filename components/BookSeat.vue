@@ -15,8 +15,8 @@
               v-for="time in timeList.morning"
               :key="time"
               class="time"
-              :class="{ selected: time == bookingInfo.selectedTime }"
-              @click="bookingInfo.selectedTime = time"
+              :class="{ selected: time == bookingInfo.date }"
+              @click="bookingInfo.date = time"
             >
               {{ time }}
             </div>
@@ -29,8 +29,8 @@
               v-for="time in timeList.day"
               :key="time"
               class="time"
-              :class="{ selected: time == bookingInfo.selectedTime }"
-              @click="bookingInfo.selectedTime = time"
+              :class="{ selected: time == bookingInfo.date }"
+              @click="bookingInfo.date = time"
             >
               {{ time }}
             </div>
@@ -43,8 +43,8 @@
               v-for="time in timeList.evening"
               :key="time"
               class="time"
-              :class="{ selected: time == bookingInfo.selectedTime }"
-              @click="bookingInfo.selectedTime = time"
+              :class="{ selected: time == bookingInfo.date }"
+              @click="bookingInfo.date = time"
             >
               {{ time }}
             </div>
@@ -79,8 +79,9 @@ export default {
   data() {
     return {
       bookingInfo: {
+        id: '',
         name: '',
-        selectedTime: '',
+        date: '',
         persons: '',
       },
     }
@@ -148,12 +149,13 @@ export default {
     createBooking() {
       const date = new Date()
       date.setHours(
-        this.bookingInfo.selectedTime.split(':')[0],
-        this.bookingInfo.selectedTime.split(':')[1],
+        this.bookingInfo.date.split(':')[0],
+        this.bookingInfo.date.split(':')[1],
         0
       )
-      this.bookingInfo.selectedTime = date.toString()
-      this.$store.commit('createBooking', this.bookingInfo)
+      this.bookingInfo.date = date.toString()
+      this.bookingInfo.id = this.$uuid.v4()
+      this.$store.commit('CREATE_BOOKING', this.bookingInfo)
     },
   },
 }

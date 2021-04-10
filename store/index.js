@@ -147,33 +147,52 @@ export const state = () => ({
       image: require('@/assets/icn_pizza.svg'),
     },
   ],
-  yourBooking: null,
+  your_booking_id: null,
+  bookings: [
+    {
+      id: 1,
+      name: 'Чертила',
+      date: '123',
+      persons: 1,
+    },
+  ],
 })
+
+export const getters = {
+  getYourBooking: (state) => {
+    return state.bookings.find(
+      (booking) => booking.id === state.your_booking_id
+    )
+  },
+}
 
 export const mutations = {
   addMenuItem(state, item) {
     state.menu.push(item)
   },
-  createBooking(state, bookingInfo) {
-    state.yourBooking = {
-      name: bookingInfo.name,
-      date: bookingInfo.selectedTime,
-      persons: bookingInfo.persons,
-    }
+  CREATE_BOOKING(state, bookingInfo) {
+    state.bookings.push({ ...bookingInfo })
+    state.your_booking_id = bookingInfo.id
   },
-  cancelBooking(state) {
-    state.yourBooking = null
+  CANCEL_BOOKING(state, bookingID) {
+    state.bookings.splice(
+      state.bookings.findIndex((booking) => booking.id === bookingID),
+      1
+    )
   },
-}
-
-export const getters = {
-  getMenu: (state) => {
-    return state.menu
+  REMOVE_YOUR_BOOKING(state) {
+    state.your_booking_id = null
   },
-  getCategories: (state) => {
-    return state.categories
+  REMOVE_MENU_ITEM(state, itemID) {
+    state.menu.splice(
+      state.menu.findIndex((item) => item.id === itemID),
+      1
+    )
   },
-  getYourBooking: (state) => {
-    return state.yourBooking
+  REMOVE_CATEGORY(state, categoryID) {
+    state.categories.splice(
+      state.categories.findIndex((category) => category.id === categoryID),
+      1
+    )
   },
 }
