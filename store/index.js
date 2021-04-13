@@ -167,9 +167,6 @@ export const getters = {
 }
 
 export const mutations = {
-  addMenuItem(state, item) {
-    state.menu.push(item)
-  },
   CREATE_BOOKING(state, bookingInfo) {
     state.bookings.push({ ...bookingInfo })
     state.your_booking_id = bookingInfo.id
@@ -183,11 +180,36 @@ export const mutations = {
   REMOVE_YOUR_BOOKING(state) {
     state.your_booking_id = null
   },
+  EDIT_MENU_ITEM(state, itemData) {
+    if (state.menu.findIndex((item) => item.id === itemData.id)) {
+      state.menu.splice(
+        state.menu.findIndex((item) => item.id === itemData.id),
+        1
+      )
+    }
+    state.menu.push(itemData)
+  },
   REMOVE_MENU_ITEM(state, itemID) {
     state.menu.splice(
       state.menu.findIndex((item) => item.id === itemID),
       1
     )
+  },
+  EDIT_CATEGORY(state, categoryData) {
+    const selectedCategory = state.categories.findIndex(
+      (category) => category.id === categoryData.id
+    )
+    if (selectedCategory !== -1) {
+      state.menu = state.menu.map((item) => {
+        item.category =
+          item.category === state.categories[selectedCategory].title
+            ? categoryData.title
+            : item.category
+        return item
+      })
+      state.categories.splice(selectedCategory, 1)
+    }
+    state.categories.push(categoryData)
   },
   REMOVE_CATEGORY(state, categoryID) {
     state.categories.splice(

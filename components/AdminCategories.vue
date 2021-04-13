@@ -24,7 +24,19 @@
             </td>
             <td class="actions">
               <div class="buttons">
-                <button class="squared">
+                <button
+                  class="squared"
+                  @click="
+                    $emit('open-category-popup', {
+                      info: category,
+                      popup: {
+                        title: 'Изменение категории',
+                        vuexCommand: 'EDIT_CATEGORY',
+                        fields,
+                      },
+                    })
+                  "
+                >
                   <img src="~assets/icn_pencil.svg" alt="Изменить" />
                 </button>
                 <button
@@ -38,7 +50,20 @@
           </tr>
         </tbody>
       </table>
-      <button class="default">Добавить</button>
+      <button
+        class="default"
+        @click="
+          $emit('open-category-popup', {
+            popup: {
+              title: 'Создание категории',
+              vuexCommand: 'EDIT_CATEGORY',
+              fields,
+            },
+          })
+        "
+      >
+        Добавить
+      </button>
     </div>
   </div>
 </template>
@@ -50,6 +75,22 @@ export default {
       type: Array,
       default: null,
     },
+  },
+  data() {
+    return {
+      fields: [
+        {
+          id: 'title',
+          title: 'Название',
+          placeholder: 'Введите название',
+        },
+        {
+          id: 'id',
+          title: 'ID',
+          placeholder: 'ID на английском',
+        },
+      ],
+    }
   },
 }
 </script>

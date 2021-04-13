@@ -2,8 +2,16 @@
   <div class="admin">
     <h1>Панель управления</h1>
     <AdminBookings :bookings="bookings" />
-    <AdminMenu :menu="menu" />
-    <AdminCategories :categories="categories" />
+    <AdminMenu :menu="menu" @open-menu-popup="popup = $event" />
+    <AdminCategories
+      :categories="categories"
+      @open-category-popup="popup = $event"
+    />
+    <AdminPopup
+      v-if="Object.keys(popup).length !== 0"
+      :popup="popup"
+      @close-popup="popup = {}"
+    />
   </div>
 </template>
 
@@ -11,6 +19,11 @@
 import { mapState } from 'vuex'
 
 export default {
+  data() {
+    return {
+      popup: {},
+    }
+  },
   head() {
     return {
       title: 'Панель управления | Мой ресторан',
