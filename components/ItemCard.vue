@@ -12,7 +12,7 @@
       </div>
       <div class="ingredients">
         <div
-          v-for="ingredient in item.ingredients"
+          v-for="ingredient in item.ingredients.split(', ')"
           :key="ingredient"
           class="ingredient"
         >

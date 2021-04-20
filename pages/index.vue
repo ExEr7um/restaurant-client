@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RecentAdditions :menu="menu.slice(4)" />
+    <RecentAdditions :menu="menu" />
     <Categories :categories="categories" />
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
   },
   computed: {
     ...mapState(['menu', 'categories']),
+  },
+  mounted() {
+    this.$store.dispatch('getMenu')
+    this.$store.dispatch('getCategories')
   },
 }
 </script>

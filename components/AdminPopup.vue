@@ -40,8 +40,12 @@ export default {
   },
   methods: {
     save() {
-      this.$store.commit(this.popup.popup.vuexCommand, this.popupData)
-      this.$emit('close-popup')
+      if (Object.values(this.popupData).includes(null)) {
+        alert('Заполните все поля!')
+      } else {
+        this.$store.dispatch(this.popup.popup.vuexCommand, this.popupData)
+        this.$emit('close-popup')
+      }
     },
   },
 }

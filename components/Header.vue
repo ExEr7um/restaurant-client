@@ -13,6 +13,14 @@
         Бронирование
         <div class="indicator"></div>
       </nuxt-link>
+      <nuxt-link to="/about">
+        Об авторе
+        <div class="indicator"></div>
+      </nuxt-link>
+      <nuxt-link to="/admin">
+        Панель управления
+        <div class="indicator"></div>
+      </nuxt-link>
     </nav>
     <nuxt-link to="/booking">
       <button class="default">Забронировать столик</button>

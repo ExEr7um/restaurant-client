@@ -32,6 +32,10 @@ export default {
   computed: {
     ...mapState(['bookings', 'menu', 'categories']),
   },
+  mounted() {
+    this.$store.dispatch('getMenu')
+    this.$store.dispatch('getCategories')
+  },
 }
 </script>
 

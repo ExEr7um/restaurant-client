@@ -39,7 +39,7 @@
                       info: item,
                       popup: {
                         title: 'Изменение товара',
-                        vuexCommand: 'EDIT_MENU_ITEM',
+                        vuexCommand: 'editMenu',
                         fields,
                       },
                     })
@@ -49,7 +49,7 @@
                 </button>
                 <button
                   class="squared"
-                  @click="$store.commit('REMOVE_MENU_ITEM', item.id)"
+                  @click="$store.dispatch('removeMenuItem', item.id)"
                 >
                   <img src="~assets/icn_trash.svg" alt="Отменить" />
                 </button>
@@ -64,7 +64,7 @@
           $emit('open-menu-popup', {
             popup: {
               title: 'Создание товара',
-              vuexCommand: 'EDIT_MENU_ITEM',
+              vuexCommand: 'editMenu',
               fields,
             },
           })
@@ -96,6 +96,16 @@ export default {
           id: 'category',
           title: 'Категория',
           placeholder: 'Введите категорию',
+        },
+        {
+          id: 'image',
+          title: 'Изображение',
+          placeholder: 'Ссылка на изображение',
+        },
+        {
+          id: 'ingredients',
+          title: 'Ингридиенты',
+          placeholder: 'Вводите через запятую',
         },
         {
           id: 'price',
