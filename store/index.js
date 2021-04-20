@@ -115,36 +115,6 @@ export const state = () => ({
   //   ],
   // },
   categories: null,
-  // {
-  //   id: 'burgers',
-  //   title: 'Бургеры',
-  //   image: require('@/assets/icn_burgers.svg'),
-  // },
-  // {
-  //   id: 'starters',
-  //   title: 'Стартеры',
-  //   image: require('@/assets/icn_starters.svg'),
-  // },
-  // {
-  //   id: 'cold-drinks',
-  //   title: 'Холодные напитки',
-  //   image: require('@/assets/icn_cold-drinks.svg'),
-  // },
-  // {
-  //   id: 'hot-drinks',
-  //   title: 'Горячие напитки',
-  //   image: require('@/assets/icn_hot-drinks.svg'),
-  // },
-  // {
-  //   id: 'deserts',
-  //   title: 'Десерты',
-  //   image: require('@/assets/icn_deserts.svg'),
-  // },
-  // {
-  //   id: 'pizza',
-  //   title: 'Пицца',
-  //   image: require('@/assets/icn_pizza.svg'),
-  // },
   your_booking_id: null,
   bookings: [
     {
@@ -176,12 +146,6 @@ export const actions = {
       )
     )
   },
-  async getCategories({ commit }) {
-    const categories = await this.$axios.$get(
-      `${this.$axios.defaults.baseURL}/categories`
-    )
-    commit('SET_CATEGORIES', categories._embedded.categories)
-  },
   async editMenu({ state, dispatch }, payload) {
     const category = await this.$axios.$get(
       `${this.$axios.defaults.baseURL}/categories/search/title?title=${payload.category}`
@@ -212,6 +176,46 @@ export const actions = {
       dispatch('getMenu')
     }
   },
+  async getCategories({ commit }) {
+    const categories = await this.$axios.$get(
+      `${this.$axios.defaults.baseURL}/categories?projection=withId`
+    )
+    commit(
+      'SET_CATEGORIES',
+      categories._embedded.categories.sort((a, b) =>
+        a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+      )
+    )
+  },
+  async editCategory({ state, dispatch }, payload) {
+    const selectedCategory = state.categories.findIndex(
+      (category) => category.id === payload.id
+    )
+    let res = null
+    if (selectedCategory !== -1) {
+      res = await this.$axios.$patch(
+        `${this.$axios.defaults.baseURL}/categories/${payload.id}`,
+        payload
+      )
+    } else {
+      res = await this.$axios.$post(
+        `${this.$axios.defaults.baseURL}/categories`,
+        payload
+      )
+    }
+    if (res) {
+      dispatch('getCategories')
+      dispatch('getMenu')
+    }
+  },
+  async removeCategory({ dispatch }, payload) {
+    const res = await this.$axios.$delete(
+      `${this.$axios.defaults.baseURL}/categories/${payload}`
+    )
+    if (res !== null) {
+      dispatch('getCategories')
+    }
+  },
 }
 
 export const mutations = {
@@ -233,27 +237,5 @@ export const mutations = {
   },
   REMOVE_YOUR_BOOKING(state) {
     state.your_booking_id = null
-  },
-  EDIT_CATEGORY(state, categoryData) {
-    const selectedCategory = state.categories.findIndex(
-      (category) => category.id === categoryData.id
-    )
-    if (selectedCategory !== -1) {
-      state.menu = state.menu.map((item) => {
-        item.category =
-          item.category === state.categories[selectedCategory].title
-            ? categoryData.title
-            : item.category
-        return item
-      })
-      state.categories.splice(selectedCategory, 1)
-    }
-    state.categories.push(categoryData)
-  },
-  REMOVE_CATEGORY(state, categoryID) {
-    state.categories.splice(
-      state.categories.findIndex((category) => category.id === categoryID),
-      1
-    )
   },
 }

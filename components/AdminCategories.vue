@@ -6,8 +6,7 @@
         <thead>
           <tr>
             <th>Фото</th>
-            <th class="w-1/2">Название</th>
-            <th class="w-1/2">ID</th>
+            <th class="w-full">Название</th>
             <th>Действия</th>
           </tr>
         </thead>
@@ -16,11 +15,8 @@
             <td>
               <img :src="category.image" />
             </td>
-            <td class="w-1/2">
+            <td class="w-full">
               {{ category.title }}
-            </td>
-            <td class="w-1/2">
-              {{ category.id }}
             </td>
             <td class="actions">
               <div class="buttons">
@@ -31,7 +27,7 @@
                       info: category,
                       popup: {
                         title: 'Изменение категории',
-                        vuexCommand: 'EDIT_CATEGORY',
+                        vuexCommand: 'editCategory',
                         fields,
                       },
                     })
@@ -41,7 +37,7 @@
                 </button>
                 <button
                   class="squared"
-                  @click="$store.commit('REMOVE_CATEGORY', category.id)"
+                  @click="$store.dispatch('removeCategory', category.id)"
                 >
                   <img src="~assets/icn_trash.svg" alt="Отменить" />
                 </button>
@@ -56,7 +52,7 @@
           $emit('open-category-popup', {
             popup: {
               title: 'Создание категории',
-              vuexCommand: 'EDIT_CATEGORY',
+              vuexCommand: 'editCategory',
               fields,
             },
           })
@@ -85,9 +81,9 @@ export default {
           placeholder: 'Введите название',
         },
         {
-          id: 'id',
-          title: 'ID',
-          placeholder: 'ID на английском',
+          id: 'image',
+          title: 'Изображение',
+          placeholder: 'Ссылка на изображение',
         },
       ],
     }
