@@ -23,10 +23,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/vuex-persist', ssr: false },
-    '~/plugins/vue-uuid.js',
-  ],
+  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -61,7 +58,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://exer7um-restaurant.herokuapp.com',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -3,7 +3,7 @@
     <h1>Меню</h1>
     <nav>
       <a
-        v-for="category in categories"
+        v-for="category in categories.categories"
         :key="category.id"
         v-scroll-to="`#${category.title.replace(/\s/g, '')}`"
         href="#"
@@ -12,9 +12,9 @@
       </a>
     </nav>
     <CategoryItems
-      v-for="category in categories"
+      v-for="category in categories.categories"
       :key="category.id"
-      :items="menu.filter((item) => item.category == category.title)"
+      :items="menu.menu.filter((item) => item.category == category.title)"
       :category="category"
     />
   </div>
@@ -33,8 +33,8 @@ export default {
     ...mapState(['menu', 'categories']),
   },
   mounted() {
-    this.$store.dispatch('getMenu')
-    this.$store.dispatch('getCategories')
+    this.$store.dispatch('menu/getMenu')
+    this.$store.dispatch('menu/getCategories')
   },
 }
 </script>

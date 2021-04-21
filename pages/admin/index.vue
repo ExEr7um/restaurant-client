@@ -1,10 +1,10 @@
 <template>
   <div class="admin">
     <h1>Панель управления</h1>
-    <AdminBookings :bookings="bookings" />
-    <AdminMenu :menu="menu" @open-menu-popup="popup = $event" />
+    <AdminBookings :bookings="bookings.bookings" />
+    <AdminMenu :menu="menu.menu" @open-menu-popup="popup = $event" />
     <AdminCategories
-      :categories="categories"
+      :categories="categories.categories"
       @open-category-popup="popup = $event"
     />
     <AdminPopup
@@ -33,8 +33,9 @@ export default {
     ...mapState(['bookings', 'menu', 'categories']),
   },
   mounted() {
-    this.$store.dispatch('getMenu')
-    this.$store.dispatch('getCategories')
+    this.$store.dispatch('bookings/getBookings')
+    this.$store.dispatch('menu/getMenu')
+    this.$store.dispatch('categories/getCategories')
   },
 }
 </script>

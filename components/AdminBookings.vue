@@ -17,7 +17,14 @@
               {{ booking.name }}
             </td>
             <td class="w-1/4">
-              {{ new Date(booking.date).toLocaleDateString() }}
+              {{
+                `${new Date(booking.date).toLocaleDateString()} в ${new Date(
+                  booking.date
+                ).toLocaleTimeString('ru-RU', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}`
+              }}
             </td>
             <td class="w-1/4">
               {{ booking.persons }}
@@ -26,7 +33,12 @@
               <div class="buttons">
                 <button
                   class="squared"
-                  @click="$store.commit('CANCEL_BOOKING', booking.id)"
+                  @click="
+                    $store.dispatch(
+                      'bookings/removeBooking',
+                      booking._links.self.href
+                    )
+                  "
                 >
                   <img src="~assets/icn_trash.svg" alt="Отменить" />
                 </button>

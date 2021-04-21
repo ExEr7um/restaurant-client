@@ -1,7 +1,7 @@
 <template>
   <div>
-    <RecentAdditions :menu="menu" />
-    <Categories :categories="categories" />
+    <RecentAdditions :menu="menu.menu" />
+    <Categories :categories="categories.categories" />
   </div>
 </template>
 
@@ -18,8 +18,8 @@ export default {
     ...mapState(['menu', 'categories']),
   },
   mounted() {
-    this.$store.dispatch('getMenu')
-    this.$store.dispatch('getCategories')
+    this.$store.dispatch('menu/getMenu')
+    this.$store.dispatch('categories/getCategories')
   },
 }
 </script>

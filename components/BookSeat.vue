@@ -79,7 +79,6 @@ export default {
   data() {
     return {
       bookingInfo: {
-        id: '',
         name: '',
         date: '',
         persons: '',
@@ -154,8 +153,7 @@ export default {
         0
       )
       this.bookingInfo.date = date.toString()
-      this.bookingInfo.id = this.$uuid.v4()
-      this.$store.commit('CREATE_BOOKING', this.bookingInfo)
+      this.$store.dispatch('bookings/createBooking', this.bookingInfo)
     },
   },
 }

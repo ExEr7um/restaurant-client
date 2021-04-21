@@ -1,12 +1,15 @@
 <template>
   <div class="booking">
-    <YourBooking v-if="getYourBooking != null" :your-booking="getYourBooking" />
+    <YourBooking
+      v-if="bookings.your_booking != null"
+      :your-booking="bookings.your_booking"
+    />
     <BookSeat v-else />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   head() {
@@ -16,12 +19,9 @@ export default {
   },
   computed: {
     ...mapState(['bookings']),
-    ...mapGetters(['getYourBooking']),
   },
   mounted() {
-    if (this.getYourBooking === null) {
-      this.$store.commit('REMOVE_YOUR_BOOKING')
-    }
+    this.$store.dispatch('bookings/getYourBooking')
   },
 }
 </script>

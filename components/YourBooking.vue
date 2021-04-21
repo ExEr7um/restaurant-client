@@ -16,7 +16,12 @@
       <h5>Количество гостей: {{ yourBooking.persons }}</h5>
       <button
         class="destructive"
-        @click="$store.commit('CANCEL_BOOKING', yourBooking.id)"
+        @click="
+          $store.dispatch(
+            'bookings/removeBooking',
+            yourBooking._links.self.href
+          )
+        "
       >
         Отменить бронирование
       </button>
