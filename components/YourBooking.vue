@@ -28,7 +28,7 @@
 export default {
   props: {
     yourBooking: {
-      type: String,
+      type: Object,
       default: null,
     },
   },

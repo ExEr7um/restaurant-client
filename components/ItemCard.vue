@@ -42,7 +42,7 @@ export default {
     @apply relative max-w-max;
 
     img {
-      @apply max-h-64;
+      @apply w-64 h-64;
 
       &.image-shadow {
         z-index: 1;

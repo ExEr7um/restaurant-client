@@ -5,7 +5,7 @@
       <a
         v-for="category in categories"
         :key="category.id"
-        v-scroll-to="`#${category.id}`"
+        v-scroll-to="`#${category.title.replace(/\s/g, '')}`"
         href="#"
       >
         {{ category.title }}
