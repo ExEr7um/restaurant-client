@@ -1,6 +1,6 @@
 export default {
   router: {
-    base: '/restaurant-server/',
+    base: '/restaurant-client/',
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
