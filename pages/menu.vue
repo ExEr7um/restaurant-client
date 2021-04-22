@@ -4,6 +4,7 @@
     <nav>
       <a
         v-for="category in categories.categories"
+        :id="`${category.title.replace(/\s/g, '')}-link`"
         :key="category.id"
         v-scroll-to="`#${category.title.replace(/\s/g, '')}`"
         href="#"
@@ -34,7 +35,10 @@ export default {
   },
   mounted() {
     this.$store.dispatch('menu/getMenu')
-    this.$store.dispatch('menu/getCategories')
+    this.$store.dispatch('categories/getCategories')
+    if (Object.keys(this.$route.query).length) {
+      document.getElementById(`${this.$route.query.scroll}-link`).click()
+    }
   },
 }
 </script>

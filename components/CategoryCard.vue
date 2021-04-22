@@ -1,8 +1,11 @@
 <template>
-  <div class="category-card">
+  <nuxt-link
+    class="category-card"
+    :to="`/menu?scroll=${category.title.replace(/\s/g, '')}`"
+  >
     <img :src="category.image" :alt="category.title" />
     <h4>{{ category.title }}</h4>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>

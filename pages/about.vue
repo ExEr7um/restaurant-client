@@ -30,7 +30,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: 'Об авторе | Мой ресторан',
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>

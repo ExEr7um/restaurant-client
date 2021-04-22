@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <nuxt-link to="/">
+      <nuxt-link to="/" class="home">
         Главная
         <div class="indicator"></div>
       </nuxt-link>
@@ -42,7 +42,19 @@ header {
     a {
       @apply text-gray-500 mr-6 flex flex-col items-center relative transition duration-200 ease-in-out;
 
-      &.nuxt-link-exact-active {
+      &.nuxt-link-active:not(.home) {
+        @apply text-gray-300 cursor-default;
+
+        .indicator {
+          @apply block;
+        }
+
+        &:hover {
+          @apply text-gray-300;
+        }
+      }
+
+      &.home.nuxt-link-exact-active {
         @apply text-gray-300 cursor-default;
 
         .indicator {
