@@ -1,4 +1,7 @@
 export default {
+  router: {
+    base: '/restaurant-server/',
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -66,9 +69,5 @@ export default {
 
   optimizedImages: {
     optimizeImages: true,
-  },
-
-  router: {
-    base: '/restaurant-server/',
   },
 }
