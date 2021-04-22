@@ -47,6 +47,14 @@ button {
     @apply w-8 h-8 rounded-xl;
   }
 
+  &.icon {
+    @apply bg-gray-600 text-gray-300 px-4 py-3 rounded-2xl;
+
+    img {
+      @apply mr-2 w-6;
+    }
+  }
+
   &:hover {
     @apply transform scale-110;
   }
