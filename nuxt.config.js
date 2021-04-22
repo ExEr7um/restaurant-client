@@ -67,4 +67,8 @@ export default {
   optimizedImages: {
     optimizeImages: true,
   },
+
+  router: {
+    base: '/restaurant-server/',
+  },
 }
