@@ -34,7 +34,7 @@ button {
   @apply transition duration-200 ease-in-out flex items-center justify-center;
 
   &.default {
-    @apply bg-green-800 text-green-400 px-6 py-3 rounded-2xl;
+    @apply bg-green-600 text-white px-6 py-3 rounded-2xl;
 
     width: max-content;
   }
