@@ -202,10 +202,12 @@ export default {
       }
 
       .persons-icons {
-        @apply flex flex-wrap w-28;
+        @apply flex flex-wrap  items-center w-28;
 
         img {
           @apply mr-2 w-3 mr-2;
+
+          height: fit-content;
         }
       }
     }
