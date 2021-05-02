@@ -27,7 +27,7 @@
                       info: category,
                       popup: {
                         title: 'Изменение категории',
-                        vuexCommand: 'editCategory',
+                        vuexCommand: 'categories/editCategory',
                         fields,
                       },
                     })
@@ -37,7 +37,9 @@
                 </button>
                 <button
                   class="squared"
-                  @click="$store.dispatch('removeCategory', category.id)"
+                  @click="
+                    $store.dispatch('categories/removeCategory', category.id)
+                  "
                 >
                   <img src="~assets/icn_trash.svg" alt="Отменить" />
                 </button>
@@ -52,7 +54,7 @@
           $emit('open-category-popup', {
             popup: {
               title: 'Создание категории',
-              vuexCommand: 'editCategory',
+              vuexCommand: 'categories/editCategory',
               fields,
             },
           })

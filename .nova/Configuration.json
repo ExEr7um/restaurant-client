@@ -1,5 +1,6 @@
 {
   "editor.default_syntax" : "vue",
+  "tommasonegri.vue.serverRunning" : true,
   "workspace.color" : 5,
   "workspace.name" : "Restaurant Client"
 }
