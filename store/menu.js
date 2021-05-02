@@ -5,7 +5,7 @@ export const state = () => ({
 export const actions = {
   async getMenu({ commit }) {
     const menu = await this.$axios.$get(
-      `${this.$axios.defaults.baseURL}/menuItems?projection=withCategory?size=100`
+      `${this.$axios.defaults.baseURL}/menuItems?size=100&projection=withCategory`
     )
     commit(
       'SET_MENU',
