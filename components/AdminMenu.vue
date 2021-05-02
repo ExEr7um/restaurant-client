@@ -1,7 +1,7 @@
 <template>
-  <div class="menu-container">
-    <h2>Меню</h2>
-    <div class="menu background-container">
+  <div>
+    <h2 class="mt-8 mb-4">Меню</h2>
+    <div class="background-container">
       <table class="table-auto">
         <thead>
           <tr>
@@ -30,8 +30,8 @@
             <td class="w-1/8">
               {{ item.ccal }}
             </td>
-            <td class="actions">
-              <div class="buttons">
+            <td>
+              <div class="flex justify-between w-full">
                 <button
                   class="squared"
                   @click="
@@ -59,7 +59,7 @@
         </tbody>
       </table>
       <button
-        class="default"
+        class="default mt-6"
         @click="
           $emit('open-menu-popup', {
             popup: {
@@ -122,15 +122,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.menu-container {
-  h2 {
-    @apply mt-8 mb-4;
-  }
-
-  button.default {
-    @apply mt-6;
-  }
-}
-</style>

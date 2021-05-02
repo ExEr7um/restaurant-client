@@ -1,9 +1,13 @@
 <template>
   <nuxt-link
-    class="category-card"
+    class="flex flex-col items-center bg-gray-700 rounded-2xl py-8 shadow-xl text-center"
     :to="`/menu?scroll=${category.title.replace(/\s/g, '')}`"
   >
-    <img :src="category.image" :alt="category.title" />
+    <img
+      :src="category.image"
+      :alt="category.title"
+      class="max-w-sm max-h-24 mb-4"
+    />
     <h4>{{ category.title }}</h4>
   </nuxt-link>
 </template>
@@ -18,13 +22,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.category-card {
-  @apply flex flex-col items-center bg-gray-700 rounded-2xl py-8 shadow-xl text-center;
-
-  img {
-    @apply max-w-sm max-h-24 mb-4;
-  }
-}
-</style>

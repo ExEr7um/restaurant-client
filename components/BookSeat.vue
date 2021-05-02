@@ -1,20 +1,20 @@
 <template>
-  <div class="book-seat">
+  <div>
     <h1>Забронировать столик</h1>
-    <div class="book-seat-container">
-      <div class="name-input">
+    <div class="bg-gray-700 w-full flex flex-col p-12 rounded-2xl mt-4">
+      <div class="mb-8">
         <h2>Введите ваше имя</h2>
-        <input v-model="bookingInfo.name" type="text" />
+        <input v-model="bookingInfo.name" type="text" class="mt-4" />
       </div>
-      <div class="time-select">
+      <div>
         <h2>Выберите время</h2>
         <div v-if="timeList.morning.length > 0" class="morning">
           <h3>🌅 Утро</h3>
-          <div class="time-container">
+          <div class="flex flex-wrap mt-1">
             <div
               v-for="time in timeList.morning"
               :key="time"
-              class="time"
+              class="time flex items-center justify-center bg-gray-600 text-gray-400 rounded-full text-sm py-1 px-2 mt-2 mr-2 cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
               :class="{ selected: time == bookingInfo.date }"
               @click="bookingInfo.date = time"
             >
@@ -24,11 +24,11 @@
         </div>
         <div v-if="timeList.day.length > 0" class="day">
           <h3>🏞 День</h3>
-          <div class="time-container">
+          <div class="flex flex-wrap mt-1">
             <div
               v-for="time in timeList.day"
               :key="time"
-              class="time"
+              class="time flex items-center justify-center bg-gray-600 text-gray-400 rounded-full text-sm py-1 px-2 mt-2 mr-2 cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
               :class="{ selected: time == bookingInfo.date }"
               @click="bookingInfo.date = time"
             >
@@ -38,11 +38,11 @@
         </div>
         <div v-if="timeList.evening.length > 0" class="evening">
           <h3>🌃 Вечер</h3>
-          <div class="time-container">
+          <div class="flex flex-wrap mt-1">
             <div
               v-for="time in timeList.evening"
               :key="time"
-              class="time"
+              class="time flex items-center justify-center bg-gray-600 text-gray-400 rounded-full text-sm py-1 px-2 mt-2 mr-2 cursor-pointer transition duration-200 ease-in-out transform hover:scale-110"
               :class="{ selected: time == bookingInfo.date }"
               @click="bookingInfo.date = time"
             >
@@ -51,20 +51,25 @@
           </div>
         </div>
       </div>
-      <div class="persons-select">
+      <div class="mt-8 mb-12">
         <h2>Введите количество персон</h2>
-        <div class="persons-input">
+        <div class="flex mt-4">
           <input
             v-model="bookingInfo.persons"
+            class="mr-4 w-16"
             type="text"
             @input="checkPersons"
           />
-          <div v-if="parseInt(bookingInfo.persons) > 0" class="persons-icons">
+          <div
+            v-if="parseInt(bookingInfo.persons) > 0"
+            class="flex flex-wrap items-center w-28"
+          >
             <img
               v-for="person in parseInt(bookingInfo.persons)"
               :key="person"
               src="~assets/icn_person.svg"
               alt=""
+              class="person-icon mr-2 w-3 mr-2"
             />
           </div>
         </div>
@@ -160,57 +165,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.book-seat .book-seat-container {
-  @apply bg-gray-700 w-full flex flex-col p-12 rounded-2xl mt-4;
+h3 {
+  @apply mt-6;
+}
 
-  h3 {
-    @apply mt-6;
-  }
+.time.selected {
+  @apply bg-green-500 text-white cursor-default scale-100;
+}
 
-  .name-input {
-    @apply mb-8;
-
-    input {
-      @apply mt-4;
-    }
-  }
-
-  .time-select .time-container {
-    @apply flex flex-wrap mt-1;
-
-    .time {
-      @apply flex items-center justify-center bg-gray-600 text-gray-400 rounded-full text-sm py-1 px-2 mt-2 mr-2 cursor-pointer transition duration-200 ease-in-out;
-
-      &:hover {
-        @apply transform scale-110;
-      }
-
-      &.selected {
-        @apply bg-green-500 text-white;
-      }
-    }
-  }
-
-  .persons-select {
-    @apply mt-8 mb-12;
-
-    .persons-input {
-      @apply flex mt-4;
-
-      input {
-        @apply mr-4 w-16;
-      }
-
-      .persons-icons {
-        @apply flex flex-wrap  items-center w-28;
-
-        img {
-          @apply mr-2 w-3 mr-2;
-
-          height: fit-content;
-        }
-      }
-    }
-  }
+.person-icon {
+  height: fit-content;
 }
 </style>

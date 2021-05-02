@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">
+  <div>
     <h1>Панель управления</h1>
     <AdminBookings :bookings="bookings.bookings" />
     <AdminMenu :menu="menu.menu" @open-menu-popup="popup = $event" />
@@ -39,5 +39,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

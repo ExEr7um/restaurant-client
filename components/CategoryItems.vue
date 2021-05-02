@@ -1,5 +1,5 @@
 <template>
-  <div :id="category.title.replace(/\s/g, '')" class="category-items">
+  <div :id="category.title.replace(/\s/g, '')" class="mb-12">
     <h2>{{ category.title }}</h2>
     <div
       class="items-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -23,9 +23,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.category-items {
-  @apply mb-12;
-}
-</style>

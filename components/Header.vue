@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="flex items-center justify-between h-24 mb-2">
     <Navigation
       :navigation-items="[
         { title: 'Главная', class: 'home', to: '/' },
@@ -18,9 +18,3 @@
 <script>
 export default {}
 </script>
-
-<style lang="scss" scoped>
-header {
-  @apply flex items-center justify-between h-24 mb-2;
-}
-</style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="your-booking">
+  <div class="mb-8">
     <h1>Ваше бронирование</h1>
-    <div class="your-booking-container background-container">
-      <img src="~assets/icn_clock.svg" alt="" />
+    <div class="items-center mt-4 background-container">
+      <img src="~assets/icn_clock.svg" alt="" class="w-32 mb-4" />
       <h2>
         {{
           `${new Date(yourBooking.date).toLocaleDateString()} в ${new Date(
@@ -13,7 +13,7 @@
           })}`
         }}
       </h2>
-      <h5>Количество гостей: {{ yourBooking.persons }}</h5>
+      <h5 class="mt-2 mb-4">Количество гостей: {{ yourBooking.persons }}</h5>
       <button
         class="destructive"
         @click="
@@ -39,21 +39,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.your-booking {
-  @apply mb-8;
-
-  .your-booking-container {
-    @apply items-center mt-4;
-
-    img {
-      @apply w-32 mb-4;
-    }
-
-    h5 {
-      @apply mt-2 mb-4;
-    }
-  }
-}
-</style>

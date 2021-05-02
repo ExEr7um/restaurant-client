@@ -1,13 +1,14 @@
 <template>
-  <div class="menu">
-    <h1>Меню</h1>
-    <nav>
+  <div>
+    <h1 class="mb-3">Меню</h1>
+    <nav class="flex items-center mb-8">
       <a
         v-for="category in categories.categories"
         :id="`${category.title.replace(/\s/g, '')}-link`"
         :key="category.id"
         v-scroll-to="`#${category.title.replace(/\s/g, '')}`"
         href="#"
+        class="text-gray-500 mr-4 transition duration-200 ease-in-out hover:text-gray-400"
       >
         {{ category.title }}
       </a>
@@ -42,23 +43,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.menu {
-  h1 {
-    @apply mb-3;
-  }
-
-  nav {
-    @apply flex items-center mb-8;
-
-    a {
-      @apply text-gray-500 mr-4 transition duration-200 ease-in-out;
-
-      &:hover {
-        @apply text-gray-400;
-      }
-    }
-  }
-}
-</style>

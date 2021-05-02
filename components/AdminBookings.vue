@@ -1,7 +1,7 @@
 <template>
-  <div class="bookings-container">
-    <h2>Текущие бронирования</h2>
-    <div class="bookings background-container">
+  <div>
+    <h2 class="mt-8 mb-4">Текущие бронирования</h2>
+    <div class="background-container">
       <table class="table-auto">
         <thead>
           <tr>
@@ -29,8 +29,8 @@
             <td class="w-1/4">
               {{ booking.persons }}
             </td>
-            <td class="actions">
-              <div class="buttons">
+            <td>
+              <div class="flex justify-between w-full">
                 <button
                   class="squared"
                   @click="
@@ -61,9 +61,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.bookings-container h2 {
-  @apply mt-8 mb-4;
-}
-</style>

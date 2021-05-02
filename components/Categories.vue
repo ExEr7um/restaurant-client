@@ -1,6 +1,6 @@
 <template>
-  <div class="categories">
-    <h1>Категории</h1>
+  <div class="mt-12">
+    <h1 class="mb-4">Категории</h1>
     <div
       class="categories-list grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
     >
@@ -23,13 +23,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.categories {
-  @apply mt-12;
-
-  h1 {
-    @apply mb-4;
-  }
-}
-</style>

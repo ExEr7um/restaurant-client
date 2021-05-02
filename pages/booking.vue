@@ -1,5 +1,5 @@
 <template>
-  <div class="booking">
+  <div>
     <YourBooking
       v-if="bookings.your_booking != null"
       :your-booking="bookings.your_booking"
@@ -25,5 +25,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="categories-container">
-    <h2>Категории</h2>
-    <div class="categories background-container">
+  <div>
+    <h2 class="mt-8 mb-4">Категории</h2>
+    <div class="background-container">
       <table class="table-auto">
         <thead>
           <tr>
@@ -18,8 +18,8 @@
             <td class="w-full">
               {{ category.title }}
             </td>
-            <td class="actions">
-              <div class="buttons">
+            <td>
+              <div class="flex justify-between w-full">
                 <button
                   class="squared"
                   @click="
@@ -49,7 +49,7 @@
         </tbody>
       </table>
       <button
-        class="default"
+        class="default mt-6"
         @click="
           $emit('open-category-popup', {
             popup: {
@@ -92,15 +92,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.categories-container {
-  h2 {
-    @apply mt-8 mb-4;
-  }
-
-  button.default {
-    @apply mt-6;
-  }
-}
-</style>
