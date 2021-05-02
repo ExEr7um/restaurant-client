@@ -17,11 +17,16 @@
 
 <script>
 export default {
-  props: {
-    navigationItems: {
-      type: Array,
-      default: null,
-    },
+  data() {
+    return {
+      navigationItems: [
+        { title: 'Главная', class: 'home', to: '/' },
+        { title: 'Меню', to: '/menu' },
+        { title: 'Бронирование', to: '/booking' },
+        { title: 'Об авторе', to: '/about' },
+        { title: 'Панель управления', to: '/admin' },
+      ],
+    }
   },
 }
 </script>
