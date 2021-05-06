@@ -43,7 +43,10 @@ export default {
   },
   methods: {
     save() {
-      if (Object.values(this.popupData).includes(null)) {
+      if (
+        Object.values(this.popupData).includes(null) ||
+        Object.keys(this.popupData).length === 0
+      ) {
         alert('Заполните все поля!')
       } else {
         this.$store.dispatch(this.popup.popup.vuexCommand, this.popupData)
