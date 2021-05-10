@@ -9,21 +9,26 @@
           <img src="~assets/icn_cross.svg" alt="Отменить" />
         </button>
       </div>
-      <div
-        v-for="field in popup.popup.fields"
-        :id="field.id"
-        :key="field.id"
-        class="popup-field my-3"
-      >
-        <h4 class="mb-1">{{ field.title }}</h4>
-        <input
-          v-model="popupData[field.id]"
-          type="text"
-          :placeholder="field.placeholder"
-          class="w-72"
-        />
-      </div>
-      <button class="default mt-8" @click="save">Сохранить</button>
+      <form id="popup" @submit.prevent="save">
+        <div
+          v-for="field in popup.popup.fields"
+          :id="field.id"
+          :key="field.id"
+          class="popup-field my-3"
+        >
+          <h4 class="mb-1">{{ field.title }}</h4>
+          <input
+            v-model="popupData[field.id]"
+            type="text"
+            :placeholder="field.placeholder"
+            class="w-72"
+            required
+          />
+        </div>
+        <button type="submit" form="popup" class="default mt-8">
+          Сохранить
+        </button>
+      </form>
     </div>
   </div>
 </template>
@@ -43,15 +48,8 @@ export default {
   },
   methods: {
     save() {
-      if (
-        Object.values(this.popupData).includes(null) ||
-        Object.keys(this.popupData).length === 0
-      ) {
-        alert('Заполните все поля!')
-      } else {
-        this.$store.dispatch(this.popup.popup.vuexCommand, this.popupData)
-        this.$emit('close-popup')
-      }
+      this.$store.dispatch(this.popup.popup.vuexCommand, this.popupData)
+      this.$emit('close-popup')
     },
   },
 }
