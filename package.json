@@ -45,7 +45,7 @@
     "lint-staged": "^11.0.0",
     "postcss": "^8.2.15",
     "prettier": "^2.3.0",
-    "sass": "^1.32.12",
+    "sass": "^1.32.13",
     "sass-loader": "^10.1.1"
   }
 }
